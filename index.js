@@ -154,7 +154,7 @@ app.use('/api/company',Companyrouter)
 app.use('/api/usermood',UserMoodRouter)
 app.use('/api/memberships', MembershipRouter);
 
-app.listen(port, 0.0.0.0,() =>{
+app.listen(port, '0.0.0.0',() =>{
     connection();
     console.log(`Zoom Meeting SDK Auth Endpoint Sample Node.js listening on port ${port}!`)
 }
