@@ -112,6 +112,10 @@ const userSchema = new mongoose.Schema({
         filename: String, // Store the filename of the image
         path: String,     // Store the path to the image in the media folder
     }],
+    notificationToken: {
+        type: String,
+        default: ""
+    },
 },
     {
         timestamps: {
