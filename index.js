@@ -1,3 +1,4 @@
+//update
 import dotenv from 'dotenv';
 import express from 'express';
 import axios from 'axios';
@@ -153,7 +154,7 @@ app.use('/api/company',Companyrouter)
 app.use('/api/usermood',UserMoodRouter)
 app.use('/api/memberships', MembershipRouter);
 
-app.listen(port, () =>{
+app.listen(port, '0.0.0.0',() =>{
     connection();
     console.log(`Zoom Meeting SDK Auth Endpoint Sample Node.js listening on port ${port}!`)
 }
