@@ -99,10 +99,10 @@ export const createUser = async (req, res) => {
         const membershipData = {
           userId: newUser._id,
           planName: 'Trail Plan', // You can set a default plan name
-          validityDays: 1,
+          validityDays: 7,
           status: 'active',
           startDate: new Date(),
-          endDate: new Date(Date.now() + 1 * 24 * 60 * 60 * 1000) // 1 day from now
+          endDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000) // 1 day from now
       };
       await Membership.create(membershipData);
 
