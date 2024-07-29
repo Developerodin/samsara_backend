@@ -19,7 +19,7 @@
     "dotenv": "^8.6.0",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.2",
-    "jsrsasign": "^10.5.25",
+    "jsrsasign": "^11.1.0",
     "moment": "^2.29.4",
     "mongodb": "^5.6.0",
     "mongoose": "^7.3.1",
@@ -27,10 +27,14 @@
     "node-cron": "^3.0.3",
     "nodemailer": "^6.9.3",
     "nodemon": "^3.0.1",
+    "razorpay": "^2.9.4",
     "request": "^2.88.2",
     "serverless-http": "^3.2.0",
     "socket.io": "^4.7.1",
     "validator": "^13.9.0"
   },
-  "type": "module"
+  "type": "module",
+  "devDependencies": {
+    "@types/dotenv": "^8.2.0"
+  }
 }

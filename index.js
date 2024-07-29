@@ -29,6 +29,7 @@ import AdminRouter from './Routes/Admin.Router.js';
 import EventApplicationRouter from './Routes/EventApplication.Routes.js';
 import UserMoodRouter from './Routes/UserMood.Router.js';
 import MembershipRouter from './Routes/Membership.Router.js';
+import PaymentRoutes from './Routes/Payment.Router.js';
 // import path from 'path';
 // import { fileURLToPath } from 'url';
 // import { dirname } from 'path';
@@ -153,6 +154,7 @@ app.use('/api/recorded-classes',RecordedClassRouter)
 app.use('/api/company',Companyrouter)
 app.use('/api/usermood',UserMoodRouter)
 app.use('/api/memberships', MembershipRouter);
+app.use('/payment', PaymentRoutes);
 
 app.listen(port, '0.0.0.0',() =>{
     connection();
