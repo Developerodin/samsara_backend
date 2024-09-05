@@ -37,14 +37,14 @@ import PaymentRoutes from './Routes/Payment.Router.js';
 // const __filename = fileURLToPath(import.meta.url);
 // const __dirname = dirname(__filename);
 const app = express()
-const port = process.env.PORT || 4000
+const port = process.env.PORT || 5000
 
 app.use(bodyParser.json(), cors())
 app.options('*', cors())
 
 app.get('/', (req, res) => {
     res.json({
-      message: "Server is running ...."
+      message: "Server v2 is running ...."
     })
   })
   // app.use((err, req, res, next) => {

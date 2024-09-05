@@ -14,8 +14,8 @@ const classSchema = new mongoose.Schema({
     },
   students: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Student' }],
   schedule: { type: Date, default: Date.now, required: true },
-  startTime:{ type: String, required: true },
-  endTime:{ type: String, required: true },
+  startTime:{ type: String, required: false },
+  endTime:{ type: String, required: false },
   recordingPath: String,
   // Add other fields as needed
 });
