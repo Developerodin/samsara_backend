@@ -44,7 +44,7 @@ app.options('*', cors())
 
 app.get('/', (req, res) => {
     res.json({
-      message: "Server v2 is running ...."
+      message: "Server v3 is running ...."
     })
   })
   // app.use((err, req, res, next) => {
