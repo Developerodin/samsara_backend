@@ -16,6 +16,7 @@ import meetingRouter from './Routes/Meeting.Router.js';
 import classRouter from './Routes/Classe.Router.js';
 import eventsRouter from './Routes/Events.Router.js';
 import assessmentRouter from './Routes/Assessment.Router.js';
+import { createEvent } from './Controllers/Events.Controller.js';
 import { createUser, loginUser, loginUserByMobile, uploadImages } from './Controllers/User.Controller.js';
 import { createTeacher, loginTeacher } from './Controllers/Teacher.Controller.js';
 import multer from 'multer';
@@ -30,12 +31,12 @@ import EventApplicationRouter from './Routes/EventApplication.Routes.js';
 import UserMoodRouter from './Routes/UserMood.Router.js';
 import MembershipRouter from './Routes/Membership.Router.js';
 import PaymentRoutes from './Routes/Payment.Router.js';
-// import path from 'path';
+import path from 'path';
 // import { fileURLToPath } from 'url';
 // import { dirname } from 'path';
 
-// const __filename = fileURLToPath(import.meta.url);
-// const __dirname = dirname(__filename);
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 const app = express()
 const port = process.env.PORT || 5000
 
@@ -73,13 +74,14 @@ app.get('/', (req, res) => {
     },
   });
   const upload = multer({ storage: storage });
-  // app.use('/media', express.static(path.join(__dirname, 'media')));
+  app.use('/media', express.static(path.join(__dirname, 'media')));
   app.use('/admin', AdminRouter);
 app.post('/student_login',loginUser)
 app.post('/student_loginbymobile',loginUserByMobile)
 app.post('/student_signup',upload.array('images', 1),createUser)
 app.post('/teacher_login',loginTeacher)
 app.post('/teacher_signup',upload.array('images', 2),createTeacher)
+app.post('/create',upload.array('image',2), createEvent);
 
 
 // JWT Middleware
@@ -147,6 +149,7 @@ app.use('/api/zoom', zoomRouter);
 app.use('/api/meeting', meetingRouter);
 app.use('/api/classes', classRouter);
 app.use('/api/events',eventsRouter)
+
 app.use('/api/event-applications', EventApplicationRouter);
 app.use('/api/assessment',assessmentRouter)
 app.use('/api/custom_session', CustomSessionRouter)

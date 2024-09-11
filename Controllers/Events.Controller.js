@@ -2,20 +2,54 @@
 
 import axios from "axios";
 import Event from "../Models/Event.Model.js";
+import mongoose from 'mongoose';
 
 
 // Create a new event
+
 export const createEvent = async (req, res) => {
-    console.log("body events  ==>",req.body)
-    try {
-        const event = new Event(req.body);
-        await event.save();
-        res.status(201).json(event);
-    } catch (error) {
-        console.log("error  ==<.",error)
-        res.status(500).json({ error: error.message });
+  console.log("body events  ==>", req.body);
+  try {
+      const eventData = { ...req.body };
+
+      // Handle coHosts field
+      if (typeof eventData.coHosts === 'string') {
+          // Parse if coHosts is received as a JSON string
+          eventData.coHosts = JSON.parse(eventData.coHosts);
+      }
+
+      // Ensure coHosts is an array of ObjectId values
+      if (Array.isArray(eventData.coHosts)) {
+          // Convert the array of Teacher IDs (coHosts) to ObjectId
+          eventData.coHosts = eventData.coHosts.map(id => new mongoose.Types.ObjectId(id));
+      } else {
+          eventData.coHosts = [];
+      }
+
+      // Handle image file upload if exists
+
+      console.log("req.files ==>", req.files);
+      if (req.files && req.files.length > 0) {
+        eventData.image = req.files.map(file => ({
+            filename: file.filename,
+            path: file.path.replace(/\\/g, '/')
+        }));
+    } else {
+        eventData.image = [];
     }
+
+      const event = new Event(eventData); // Create a new event with the processed data
+      await event.save(); // Save the event in the database
+
+      // Respond with the created event
+      res.status(201).json(event);
+  } catch (error) {
+      console.log("error ==<.", error);
+      res.status(500).json({ error: error.message });
+  }
 };
+
+
 
 // Get event by ID
 export const getEventById = async (req, res) => {
